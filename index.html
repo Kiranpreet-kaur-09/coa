@@ -173,8 +173,9 @@
     <!-- 4. GITHUB -->
     <section id="github" class="section">
       <div class="section-heading">
-        <p class="eyebrow">04 — GITHUB</p>
-        <h2>My Code Repository</h2>
+        <p class="eyebrow">04 — GITHUB &amp; LIVE SIMULATOR</p>
+        <h2>My Code Repository &amp; Architecture Simulator</h2>
+        <p>Interactive instruction set generator modeling 0, 1, 2, and 3 address architectures for Computer Organization &amp; Architecture.</p>
       </div>
 
       <div class="github-card card">
@@ -183,12 +184,174 @@
           <h3>Instruction Set Simulator (COA)</h3>
           <p>
             An architecture simulation project implementing accumulator-based instruction execution,
-            opcodes, register states, and memory cycles for Computer Organization & Architecture.
+            opcodes, register states, and memory cycles for Computer Organization &amp; Architecture.
           </p>
         </div>
         <div class="github-actions">
           <a class="btn" href="https://github.com/Kiranpreet-kaur-09/coa" target="_blank" rel="noopener noreferrer">COA Simulator Repo ↗</a>
           <a class="btn btn-secondary" href="https://github.com/25BAI10033" target="_blank" rel="noopener noreferrer">GitHub Profile: 25BAI10033 ↗</a>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE ARCHITECTURE SIMULATOR -->
+      <div class="simulator-wrapper card">
+        <div class="simulator-header">
+          <div>
+            <span class="repo-label">INTERACTIVE ARCHITECTURE WORKBENCH</span>
+            <h3>0, 1, 2 &amp; 3 Address Instruction Simulator</h3>
+            <p>
+              Type any arithmetic expression below (or choose a preset) to automatically generate the complete assembly instruction sequence
+              for <strong>0-Address (Stack)</strong>, <strong>1-Address (Accumulator)</strong>, <strong>2-Address (Register-Memory)</strong>,
+              and <strong>3-Address (General Register)</strong> machines.
+            </p>
+          </div>
+          <div class="sim-pill-badge">COA Simulation Engine</div>
+        </div>
+
+        <!-- Expression Input Panel -->
+        <div class="sim-input-panel">
+          <label for="simExprInput" class="sim-label">Arithmetic Expression Input</label>
+          <div class="sim-input-row">
+            <div class="sim-input-box">
+              <span class="sim-input-icon">fx</span>
+              <input type="text" id="simExprInput" value="X = (A + B) * (C + D)" placeholder="e.g. X = (A + B) * (C + D)" autocomplete="off" spellcheck="false" />
+            </div>
+            <button id="simGenerateBtn" type="button" class="btn sim-action-btn">
+              <span>Generate Instructions</span> ⚡
+            </button>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="sim-presets-row">
+            <span class="sim-presets-title">Presets:</span>
+            <button type="button" class="sim-preset-btn" data-expr="X = (A + B) * (C + D)">X = (A + B) * (C + D)</button>
+            <button type="button" class="sim-preset-btn" data-expr="X = (A * B) + (C * D)">X = (A * B) + (C * D)</button>
+            <button type="button" class="sim-preset-btn" data-expr="X = A + B * C - D">X = A + B * C - D</button>
+            <button type="button" class="sim-preset-btn" data-expr="Y = (A + B) / (C - D)">Y = (A + B) / (C - D)</button>
+            <button type="button" class="sim-preset-btn" data-expr="Z = (A - B) * (C + D / E)">Z = (A - B) * (C + D / E)</button>
+          </div>
+
+          <div id="simError" class="sim-error-alert" style="display: none;"></div>
+        </div>
+
+        <!-- Meta / Analysis Strip -->
+        <div class="sim-meta-strip">
+          <div class="sim-meta-cell">
+            <span class="sim-meta-key">Target:</span>
+            <span id="simTargetVar" class="sim-meta-val sim-pill">X</span>
+          </div>
+          <div class="sim-meta-cell">
+            <span class="sim-meta-key">Parsed Infix:</span>
+            <span id="simInfixDisplay" class="sim-meta-val">(A + B) * (C + D)</span>
+          </div>
+          <div class="sim-meta-cell">
+            <span class="sim-meta-key">Postfix (RPN):</span>
+            <span id="simPostfixDisplay" class="sim-meta-val sim-postfix-pill">A B + C D + *</span>
+          </div>
+        </div>
+
+        <!-- 4 Architectures Grid -->
+        <div class="sim-grid">
+          <!-- 3-Address Card -->
+          <div class="sim-card">
+            <div class="sim-card-top">
+              <div>
+                <span class="sim-badge tag-3">3-Address Format</span>
+                <h4>Three-Address (Register)</h4>
+                <p class="sim-desc">Syntax: <code>OP Dest, Src1, Src2</code></p>
+              </div>
+              <span id="simCount3" class="sim-inst-count">3 Inst</span>
+            </div>
+            <div class="sim-code-container">
+              <pre class="sim-code"><code id="simOut3"></code></pre>
+              <button type="button" class="sim-copy-btn" data-target="simOut3" title="Copy Assembly">Copy</button>
+            </div>
+            <div class="sim-card-footer">
+              <span class="sim-feature-bullet">✓</span> <strong>Minimal instructions</strong>: 3 operands per instruction reduces total count.
+            </div>
+          </div>
+
+          <!-- 2-Address Card -->
+          <div class="sim-card">
+            <div class="sim-card-top">
+              <div>
+                <span class="sim-badge tag-2">2-Address Format</span>
+                <h4>Two-Address (Register-Memory)</h4>
+                <p class="sim-desc">Syntax: <code>OP Dest, Src</code> (Dest ← Dest OP Src)</p>
+              </div>
+              <span id="simCount2" class="sim-inst-count">6 Inst</span>
+            </div>
+            <div class="sim-code-container">
+              <pre class="sim-code"><code id="simOut2"></code></pre>
+              <button type="button" class="sim-copy-btn" data-target="simOut2" title="Copy Assembly">Copy</button>
+            </div>
+            <div class="sim-card-footer">
+              <span class="sim-feature-bullet">✓</span> <strong>CISC standard</strong>: Destination register acts as one of the source operands.
+            </div>
+          </div>
+
+          <!-- 1-Address Card -->
+          <div class="sim-card">
+            <div class="sim-card-top">
+              <div>
+                <span class="sim-badge tag-1">1-Address Format</span>
+                <h4>One-Address (Accumulator AC)</h4>
+                <p class="sim-desc">Syntax: <code>OP Operand</code> (AC ← AC OP M)</p>
+              </div>
+              <span id="simCount1" class="sim-inst-count">7 Inst</span>
+            </div>
+            <div class="sim-code-container">
+              <pre class="sim-code"><code id="simOut1"></code></pre>
+              <button type="button" class="sim-copy-btn" data-target="simOut1" title="Copy Assembly">Copy</button>
+            </div>
+            <div class="sim-card-footer">
+              <span class="sim-feature-bullet">✓</span> <strong>Accumulator-based</strong>: Uses AC register; temporaries saved to memory.
+            </div>
+          </div>
+
+          <!-- 0-Address Card -->
+          <div class="sim-card">
+            <div class="sim-card-top">
+              <div>
+                <span class="sim-badge tag-0">0-Address Format</span>
+                <h4>Zero-Address (Stack Architecture)</h4>
+                <p class="sim-desc">Syntax: <code>OP</code> (Implicit Top-of-Stack / TOS)</p>
+              </div>
+              <span id="simCount0" class="sim-inst-count">8 Inst</span>
+            </div>
+            <div class="sim-code-container">
+              <pre class="sim-code"><code id="simOut0"></code></pre>
+              <button type="button" class="sim-copy-btn" data-target="simOut0" title="Copy Assembly">Copy</button>
+            </div>
+            <div class="sim-card-footer">
+              <span class="sim-feature-bullet">✓</span> <strong>Stack evaluation</strong>: Compact opcodes with zero explicit address fields for ALU.
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparative Trade-off Table -->
+        <div class="sim-summary-section">
+          <div class="sim-summary-head">
+            <h4>Comparative Architectural Trade-off Matrix</h4>
+            <span class="sim-summary-sub">Analysis of instruction count, memory traffic, and instruction bit-width</span>
+          </div>
+          <div class="sim-table-wrap">
+            <table class="sim-summary-table">
+              <thead>
+                <tr>
+                  <th>Architecture</th>
+                  <th>Implicit Working Operand</th>
+                  <th>Instruction Count</th>
+                  <th>Instruction Bit Size</th>
+                  <th>Memory / Register Traffic</th>
+                  <th>Key Architectural Trade-off</th>
+                </tr>
+              </thead>
+              <tbody id="simSummaryTableBody">
+                <!-- Dynamically populated by JS -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
@@ -255,7 +418,7 @@
             <h3>Herizon Event Certificate</h3>
             <p>Certificate of active participation in the Herizon technical symposium and collaborative student competition.</p>
             <div class="cert-actions">
-              <a class="btn small btn-secondary" href="assets/herizon_certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+              <a class="btn small" href="assets/herizon_certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
             </div>
           </div>
         </div>
@@ -274,7 +437,7 @@
             <h3>Byte Build 1.0 Certificate</h3>
             <p>Active participation in Byte Build 1.0 during Build Summit 2026 at Chandigarh University on Engineers' Day, demonstrating innovation and collaborative technical problem solving.</p>
             <div class="cert-actions">
-              <a class="btn small btn-secondary" href="assets/byte_build_certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+              <a class="btn small" href="assets/byte_build_certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
             </div>
           </div>
         </div>
@@ -293,7 +456,7 @@
             <h3>Zinnovatio 4.0 Hackathon</h3>
             <p>Certificate awarded to Kiran Sandhu (Team Vyntrix) for active participation in the Zinnovatio 4.0 Gen Z Hackathon organized by the Department of CSE, Chandigarh University.</p>
             <div class="cert-actions">
-              <a class="btn small btn-secondary" href="assets/zinnovatio_certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+              <a class="btn small" href="assets/zinnovatio_certificate.jpeg" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
             </div>
           </div>
         </div>
