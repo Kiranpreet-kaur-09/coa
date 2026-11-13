@@ -31,6 +31,7 @@
       <a href="#github">GitHub</a>
       <a href="#achievements">Achievements</a>
       <a href="#assignments">Assignments</a>
+      <a href="#case-study">Case Study</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -39,6 +40,7 @@
     <!-- 1. HOMEPAGE -->
     <section id="home" class="hero section">
       <div class="hero-text">
+        <p class="eyebrow">PORTFOLIO</p>
         <h1>Kiranpreet <span>Kaur</span></h1>
         <p class="subtitle">B.Tech CSE (Artificial Intelligence)</p>
 
@@ -260,20 +262,21 @@
       </div>
     </section>
 
-    <!-- 6. ASSIGNMENTS -->
+    <!-- 6. ASSIGNMENTS & CASE STUDY -->
     <section id="assignments" class="section dark-section">
       <div class="section-heading">
-        <p class="eyebrow">06 — ASSIGNMENTS</p>
-        <h2>My Assignments</h2>
-        <p>Computer Organization & Architecture coursework deliverables and submissions.</p>
+        <p class="eyebrow">06 — ASSIGNMENTS &amp; CASE STUDY</p>
+        <h2>Coursework &amp; Case Study</h2>
+        <p>Computer Organization &amp; Architecture coursework deliverables, submissions, and research reports.</p>
       </div>
 
+      <!-- Assignment 1 Card -->
       <div class="assignment-card">
         <div>
           <span class="assignment-number">01</span>
           <div>
             <h3>COA Assignment 1</h3>
-            <p>Instruction Set Architecture & Simulator analysis submission document (PDF).</p>
+            <p>Instruction Set Architecture &amp; Simulator analysis submission document (PDF).</p>
           </div>
         </div>
         <div class="assignment-actions">
@@ -285,6 +288,358 @@
         </div>
       </div>
       <p id="uploadStatus" class="message" role="status"></p>
+
+      <!-- Case Study 4 Card (Same way as Assignment) -->
+      <div id="case-study" class="assignment-card" style="margin-top: 28px;">
+        <div>
+          <span class="assignment-number">04</span>
+          <div>
+            <h3>Case Study 4: CPU Pipelining and Performance Improvement</h3>
+            <p>10 instructions · 5 pipeline stages · Ideal execution: 14 cycles · Speedup: ~3.57× (PDF).</p>
+          </div>
+        </div>
+        <div class="assignment-actions">
+          <a class="btn small" href="assets/Case_Study_4_CPU_Pipelining.pdf" target="_blank" rel="noopener noreferrer">View Case Study PDF ↗</a>
+          <a class="btn small btn-secondary" href="assets/Case_Study_4_CPU_Pipelining.pdf" download="Case_Study_4_CPU_Pipelining.pdf">Download PDF ↓</a>
+          <button id="toggleCaseStudyReport" type="button" class="btn small btn-secondary" aria-expanded="false">Read Online ▾</button>
+          <label class="upload-btn">
+            Replace File
+            <input id="caseStudyUpload" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" hidden />
+          </label>
+        </div>
+      </div>
+      <p id="caseStudyUploadStatus" class="message" role="status"></p>
+
+      <!-- Full Case Study Report (Expandable Interactive View) -->
+      <div id="caseStudyReportContent" class="case-study-content hidden">
+        <div class="cs-badge-bar">
+          <div>
+            <span class="cs-inst-title">Chandigarh University</span>
+            <p style="color: #aaa; font-size: 0.88rem; margin-top: 2px;">Bachelor of Technology (CSE – Microsoft AI) · Academic Report</p>
+          </div>
+          <span class="cert-badge">Case Study 4</span>
+        </div>
+
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item"><small>Subject</small><strong>Computer Organization &amp; Architecture</strong></div>
+          <div class="cs-meta-item"><small>Submitted By</small><strong>Kiranpreet Kaur</strong></div>
+          <div class="cs-meta-item"><small>UID &amp; Section</small><strong>25BAI10033 · 25BAI-601</strong></div>
+          <div class="cs-meta-item"><small>Submitted To</small><strong>Ruchika Gupta Ma'am</strong></div>
+        </div>
+
+        <!-- Metric KPI Cards -->
+        <div class="cs-stats-grid">
+          <div class="cs-stat-card"><span class="val">10</span><span class="lbl">Instructions</span></div>
+          <div class="cs-stat-card"><span class="val">5</span><span class="lbl">Stages (k)</span></div>
+          <div class="cs-stat-card"><span class="val">50</span><span class="lbl">Sequential Cycles</span></div>
+          <div class="cs-stat-card"><span class="val">14</span><span class="lbl">Pipelined Cycles</span></div>
+          <div class="cs-stat-card"><span class="val">3.57×</span><span class="lbl">Speedup</span></div>
+          <div class="cs-stat-card"><span class="val">71.4%</span><span class="lbl">Efficiency</span></div>
+          <div class="cs-stat-card"><span class="val">72%</span><span class="lbl">Cycles Saved</span></div>
+        </div>
+
+        <!-- 1. Introduction and Scenario -->
+        <div class="cs-section-block">
+          <h4>1. Introduction and Scenario</h4>
+          <p>
+            Whenever we run a program, the processor is really just executing one instruction after another,
+            thousands of millions of times every second. Because of this, even a tiny saving in the time taken per
+            instruction adds up to a very large gain overall. Instruction pipelining is one of the cleverest ways
+            computer architects have found to get that saving without making the clock itself any faster. In this
+            case study we look at how pipelining works, how much faster it makes a processor in the ideal situation,
+            and why real processors never quite reach that ideal.
+          </p>
+
+          <h5>1.1 Scenario</h5>
+          <p>
+            A processor has to execute <strong>10 independent instructions</strong>. Every instruction passes through
+            <strong>five stages</strong>, and each stage takes exactly one clock cycle. For the calculations in this
+            report we assume an ideal five-stage pipeline, which means there are no stalls, no hazards and no waiting of any kind.
+          </p>
+
+          <h5>1.2 Problem Statement</h5>
+          <p>
+            We have to compare the number of clock cycles needed by sequential (non-pipelined) execution with the number
+            needed by an ideal pipelined execution, and then find out why real pipelines may perform less well than the ideal one.
+          </p>
+
+          <h5>1.3 Objectives</h5>
+          <ul>
+            <li>To understand and explain the idea of instruction pipelining.</li>
+            <li>To list the five classic stages of a RISC pipeline and say what each one does.</li>
+            <li>To calculate the total cycles and the speedup for 10 instructions.</li>
+            <li>To draw a pipeline timing chart showing overlapping stages.</li>
+            <li>To study structural, data and control hazards and their effect on performance.</li>
+          </ul>
+
+          <h5>1.4 Assumptions</h5>
+          <ul>
+            <li>All 10 instructions are independent of each other, so no instruction needs the result of another.</li>
+            <li>Each of the five stages takes exactly one clock cycle, and all stages are of equal length.</li>
+            <li>There are no stalls, hazards, cache misses or branch problems in the ideal case.</li>
+          </ul>
+        </div>
+
+        <!-- 2. Case Study Questions and Answers -->
+        <div class="cs-section-block">
+          <h4>2. Case Study Questions and Answers</h4>
+          
+          <h5>Q16. Explain instruction pipelining.</h5>
+          <p>
+            Instruction pipelining is a technique in which the execution of several instructions is overlapped in time.
+            Instead of waiting for one instruction to finish completely before the next one starts, the processor breaks
+            every instruction into small steps (called stages) and lets different instructions occupy different stages
+            at the same moment.
+          </p>
+          <p>
+            The easiest way to picture this is a laundry example: washing, drying, ironing, and folding each take 30 minutes.
+            Running 4 loads sequentially takes 8 hours. By overlapping stages (one load washing while another dries),
+            4 loads finish in just 5 hours!
+          </p>
+          <div class="cs-callout">
+            <strong>Key Pipelining Takeaways:</strong><br>
+            • <em>Latency:</em> A single instruction still needs all 5 stages.<br>
+            • <em>Throughput:</em> Once the pipeline is full, 1 instruction completes in every cycle.<br>
+            • <em>Pipeline Registers:</em> Intermediate registers store values and control signals between stages safely.<br>
+            • <em>Clock Frequency:</em> The slowest stage determines the maximum processor clock rate.
+          </div>
+
+          <h5>Q17. Name the five classic pipeline stages.</h5>
+          <p>The classic RISC pipeline (as used in MIPS and DLX architectures) has five uniform stages:</p>
+          <div class="cs-table-wrap">
+            <table class="cs-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">No.</th>
+                  <th style="width: 90px;">Stage</th>
+                  <th style="width: 220px;">Full Name</th>
+                  <th>What happens in this stage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><span class="stage-tag stage-if">IF</span></td>
+                  <td><strong>Instruction Fetch</strong></td>
+                  <td>The instruction is read from memory using the Program Counter (PC), and PC is incremented.</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><span class="stage-tag stage-id">ID</span></td>
+                  <td><strong>Instruction Decode / Register Fetch</strong></td>
+                  <td>The instruction opcode is decoded, control signals are generated, and source registers are read.</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><span class="stage-tag stage-ex">EX</span></td>
+                  <td><strong>Execute / Address Calculation</strong></td>
+                  <td>The ALU performs arithmetic/logical operations or calculates effective memory addresses.</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><span class="stage-tag stage-mem">MEM</span></td>
+                  <td><strong>Memory Access</strong></td>
+                  <td>Data memory is read for Load or written for Store. Other instructions pass through.</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><span class="stage-tag stage-wb">WB</span></td>
+                  <td><strong>Write Back</strong></td>
+                  <td>The final result is written back into the architectural destination register.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5>Q18. How many cycles are needed without pipelining?</h5>
+          <div class="cs-callout">
+            <code>Total cycles (sequential) = n × k = 10 × 5 = 50 cycles</code><br>
+            Every instruction completes all 5 stages before the next begins. No overlapping occurs.
+          </div>
+
+          <h5>Q19. How many cycles are needed in an ideal five-stage pipeline?</h5>
+          <div class="cs-callout">
+            <code>Total cycles (pipelined) = k + (n − 1) = 5 + (10 − 1) = 5 + 9 = 14 cycles</code><br>
+            The first instruction requires 5 cycles to fill the pipeline. Each subsequent instruction completes in 1 additional cycle.
+          </div>
+        </div>
+
+        <!-- 3. Pipeline Timing Charts -->
+        <div class="cs-section-block">
+          <h4>3. Pipeline Timing Charts</h4>
+          
+          <div class="cs-legend">
+            <strong>Stage Legend:</strong>
+            <span class="stage-tag stage-if">IF: Fetch</span>
+            <span class="stage-tag stage-id">ID: Decode</span>
+            <span class="stage-tag stage-ex">EX: Execute</span>
+            <span class="stage-tag stage-mem">MEM: Memory</span>
+            <span class="stage-tag stage-wb">WB: Writeback</span>
+          </div>
+
+          <h5>Figure 1: Timing Chart for the First 5 Instructions (9 Cycles)</h5>
+          <div class="cs-table-wrap">
+            <table class="cs-table cs-table-compact">
+              <thead>
+                <tr>
+                  <th>Instr.</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>C6</th><th>C7</th><th>C8</th><th>C9</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>I1</strong></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I2</strong></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I3</strong></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td></tr>
+                <tr><td><strong>I4</strong></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td></tr>
+                <tr><td><strong>I5</strong></td><td></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5>Figure 2: Complete Pipeline Timing Chart for All 10 Instructions (14 Cycles)</h5>
+          <div class="cs-table-wrap">
+            <table class="cs-table cs-table-compact">
+              <thead>
+                <tr>
+                  <th>Instr.</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>C6</th><th>C7</th><th>C8</th><th>C9</th><th>C10</th><th>C11</th><th>C12</th><th>C13</th><th>C14</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>I1</strong></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I2</strong></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I3</strong></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I4</strong></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I5</strong></td><td></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I6</strong></td><td></td><td></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I7</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>I8</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td><td></td></tr>
+                <tr><td><strong>I9</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td><td></td></tr>
+                <tr><td><strong>I10</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="stage-tag stage-if">IF</span></td><td><span class="stage-tag stage-id">ID</span></td><td><span class="stage-tag stage-ex">EX</span></td><td><span class="stage-tag stage-mem">MEM</span></td><td><span class="stage-tag stage-wb">WB</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5>Phases of Pipeline Execution</h5>
+          <div class="cs-table-wrap">
+            <table class="cs-table">
+              <thead>
+                <tr><th>Phase</th><th>Cycles</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Filling Pipeline</strong></td>
+                  <td>C1 – C4</td>
+                  <td>More stages become occupied in each cycle. No instruction completes until end of cycle 5.</td>
+                </tr>
+                <tr>
+                  <td><strong>Full Pipeline (Steady State)</strong></td>
+                  <td>C5 – C10</td>
+                  <td>All 5 stages active simultaneously. Peak throughput of 1 instruction completed per clock cycle.</td>
+                </tr>
+                <tr>
+                  <td><strong>Draining Pipeline</strong></td>
+                  <td>C11 – C14</td>
+                  <td>No new instructions enter; remaining instructions finish sequentially until I10 leaves at cycle 14.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4. Performance & Speedup -->
+        <div class="cs-section-block">
+          <h4>4. Performance Calculations &amp; Speedup</h4>
+          <div class="cs-callout">
+            <code>Speedup = (Cycles without pipelining) / (Cycles with pipelining) = 50 / 14 ≈ 3.57×</code><br>
+            The pipelined processor is approximately <strong>3.57 times faster</strong> than the sequential implementation.
+          </div>
+
+          <h5>Why not 5× faster?</h5>
+          <p>
+            The theoretical maximum speedup equals the number of stages (k = 5). For small instruction counts,
+            the initial pipeline fill and drain periods reduce the amortized speedup. As <em>n</em> increases,
+            speedup asymptotically approaches 5:
+          </p>
+
+          <div class="cs-table-wrap">
+            <table class="cs-table">
+              <thead>
+                <tr><th>Instructions (n)</th><th>Sequential (5n)</th><th>Pipelined (5 + n − 1)</th><th>Speedup</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>10</td><td>50</td><td>14</td><td><strong>3.57×</strong></td></tr>
+                <tr><td>20</td><td>100</td><td>24</td><td><strong>4.17×</strong></td></tr>
+                <tr><td>50</td><td>250</td><td>54</td><td><strong>4.63×</strong></td></tr>
+                <tr><td>100</td><td>500</td><td>104</td><td><strong>4.81×</strong></td></tr>
+                <tr><td>1,000</td><td>5,000</td><td>1,004</td><td><strong>4.98×</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5>Efficiency &amp; Throughput</h5>
+          <ul>
+            <li><strong>Pipeline Efficiency:</strong> Speedup / k = 3.57 / 5 ≈ <strong>71.4%</strong> hardware utilization.</li>
+            <li><strong>Throughput:</strong> 10 / 14 ≈ <strong>0.71 IPC</strong> (vs 0.20 IPC sequential).</li>
+            <li><strong>Cycles Saved:</strong> 50 − 14 = <strong>36 clock cycles</strong> (72% reduction in overall time).</li>
+          </ul>
+
+          <h5>Q20. Hazards in Pipelining</h5>
+          <p>Hazards are events that prevent an instruction from executing in its designated clock cycle:</p>
+          <ul>
+            <li><strong>Structural Hazard:</strong> Resource conflict when hardware cannot support multiple instructions simultaneously (e.g. single memory for both instructions and data). Solution: Harvard architecture (separate I-cache &amp; D-cache).</li>
+            <li><strong>Data Hazard (RAW):</strong> An instruction depends on results not yet written back by an earlier instruction. Solution: Operand forwarding/bypassing, compiler reordering, or pipeline stalls.</li>
+            <li><strong>Control Hazard:</strong> Branch and jump instructions where next PC is unknown until EX or MEM. Solution: Dynamic branch prediction, branch target buffers (BTB), and delayed branch slots.</li>
+          </ul>
+        </div>
+
+        <!-- 5. Real-World Factors -->
+        <div class="cs-section-block">
+          <h4>5. Why Real Pipelines Perform Below Ideal</h4>
+          <p>
+            In practical processor designs, clock cycle overhead, unbalanced stage delays, cache misses,
+            and pipeline stalls reduce overall throughput below the ideal 14-cycle benchmark:
+          </p>
+          <div class="cs-table-wrap">
+            <table class="cs-table">
+              <thead>
+                <tr><th>Stall Cycles Added</th><th>Total Cycles</th><th>Sequential Cycles</th><th>Real Speedup</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0 (Ideal)</td><td>14</td><td>50</td><td><strong>3.57×</strong></td></tr>
+                <tr><td>2</td><td>16</td><td>50</td><td><strong>3.13×</strong></td></tr>
+                <tr><td>4</td><td>18</td><td>50</td><td><strong>2.78×</strong></td></tr>
+                <tr><td>6</td><td>20</td><td>50</td><td><strong>2.50×</strong></td></tr>
+                <tr><td>10</td><td>24</td><td>50</td><td><strong>2.08×</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6. Summary & References -->
+        <div class="cs-section-block" style="margin-bottom: 0;">
+          <h4>6. Summary &amp; References</h4>
+          <div class="cs-table-wrap">
+            <table class="cs-table">
+              <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Number of instructions (n)</td><td>10</td></tr>
+                <tr><td>Number of pipeline stages (k)</td><td>5</td></tr>
+                <tr><td>Cycles without pipelining (n × k)</td><td>50 cycles</td></tr>
+                <tr><td>Cycles with ideal pipelining (k + n − 1)</td><td>14 cycles</td></tr>
+                <tr><td>Speedup (50 / 14)</td><td>≈ 3.57×</td></tr>
+                <tr><td>Pipeline Efficiency</td><td>≈ 71.4%</td></tr>
+                <tr><td>Maximum theoretical speedup (n → ∞)</td><td>5.00×</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5 style="margin-top: 18px;">References</h5>
+          <ul>
+            <li>Hennessy, J. L. and Patterson, D. A., <em>Computer Architecture: A Quantitative Approach</em>, Morgan Kaufmann.</li>
+            <li>Patterson, D. A. and Hennessy, J. L., <em>Computer Organization and Design: The Hardware/Software Interface</em>, Morgan Kaufmann.</li>
+            <li>Stallings, W., <em>Computer Organization and Architecture: Designing for Performance</em>, Pearson.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- 7. CONTACT -->

@@ -795,6 +795,246 @@ body {
   transform: translateY(-2px);
 }
 
+.assignment-actions .btn-secondary,
+.dark-section .btn-secondary {
+  color: #ddd;
+  border-color: #4a4a46;
+  background: transparent;
+}
+
+.assignment-actions .btn-secondary:hover,
+.dark-section .btn-secondary:hover {
+  background: #363632;
+  border-color: #888;
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* CASE STUDY STYLES & INTERACTIVE REPORT */
+.hidden {
+  display: none !important;
+}
+
+.case-study-content {
+  margin-top: 24px;
+  max-width: 1000px;
+  background: var(--dark-surface);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  padding: 32px;
+  color: #ddd;
+  animation: csFadeIn 0.3s ease;
+}
+
+@keyframes csFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cs-badge-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line-dark);
+  margin-bottom: 24px;
+}
+
+.cs-inst-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.cs-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cs-meta-item small {
+  display: block;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.cs-meta-item strong {
+  font-size: 0.94rem;
+  color: var(--white);
+}
+
+.cs-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin: 20px 0 28px;
+}
+
+.cs-stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.cs-stat-card .val {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-light);
+  line-height: 1.1;
+  display: block;
+}
+
+.cs-stat-card .lbl {
+  font-size: 0.75rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  display: block;
+}
+
+.cs-section-block {
+  margin-bottom: 30px;
+}
+
+.cs-section-block h4 {
+  font-size: 1.25rem;
+  color: var(--white);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cs-section-block h5 {
+  font-size: 1.02rem;
+  color: var(--accent-light);
+  margin: 16px 0 8px;
+}
+
+.cs-section-block p {
+  color: #bbb;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.cs-section-block ul {
+  padding-left: 20px;
+  margin-bottom: 14px;
+}
+
+.cs-section-block li {
+  color: #bbb;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.cs-callout {
+  background: rgba(139, 94, 60, 0.12);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 6px 6px 0;
+  margin: 14px 0;
+  font-size: 0.92rem;
+  color: #ddd;
+}
+
+.cs-callout code {
+  color: #f6ad55;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.cs-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 18px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  min-width: 600px;
+}
+
+.cs-table th,
+.cs-table td {
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.cs-table th {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cs-table td {
+  color: #ccc;
+}
+
+.cs-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cs-table-compact {
+  min-width: 720px;
+  text-align: center;
+}
+
+.cs-table-compact th,
+.cs-table-compact td {
+  text-align: center;
+  padding: 8px 6px;
+  font-size: 0.8rem;
+}
+
+.stage-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.5px;
+}
+
+.stage-if { background: rgba(59, 130, 246, 0.22); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+.stage-id { background: rgba(168, 85, 247, 0.22); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+.stage-ex { background: rgba(245, 158, 11, 0.22); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+.stage-mem { background: rgba(16, 185, 129, 0.22); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+.stage-wb { background: rgba(239, 68, 68, 0.22); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+
+.cs-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0 16px;
+  align-items: center;
+  font-size: 0.82rem;
+  color: #aaa;
+}
+
 /* CONTACT SECTION */
 .contact-grid {
   display: grid;

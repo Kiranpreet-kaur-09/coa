@@ -200,3 +200,33 @@ if (assignmentUpload && uploadStatus) {
     }
   });
 }
+
+// Case Study File Upload Status
+const caseStudyUpload = document.getElementById("caseStudyUpload");
+const caseStudyUploadStatus = document.getElementById("caseStudyUploadStatus");
+
+if (caseStudyUpload && caseStudyUploadStatus) {
+  caseStudyUpload.addEventListener("change", function () {
+    if (this.files.length) {
+      const file = this.files[0];
+      const sizeKB = (file.size / 1024).toFixed(1);
+      caseStudyUploadStatus.textContent = `✓ Selected new replacement: ${file.name} (${sizeKB} KB)`;
+      caseStudyUploadStatus.className = "message success";
+    } else {
+      caseStudyUploadStatus.textContent = "";
+      caseStudyUploadStatus.className = "message";
+    }
+  });
+}
+
+// Case Study Report Toggle
+const toggleCaseStudyReport = document.getElementById("toggleCaseStudyReport");
+const caseStudyReportContent = document.getElementById("caseStudyReportContent");
+
+if (toggleCaseStudyReport && caseStudyReportContent) {
+  toggleCaseStudyReport.addEventListener("click", () => {
+    const isHidden = caseStudyReportContent.classList.toggle("hidden");
+    toggleCaseStudyReport.setAttribute("aria-expanded", String(!isHidden));
+    toggleCaseStudyReport.textContent = isHidden ? "Read Online ▾" : "Collapse Report ▴";
+  });
+}
